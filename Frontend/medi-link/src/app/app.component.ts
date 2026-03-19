@@ -1,23 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HomeService } from './services/home.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet],
   template: `
-  <h1>{{ message}}</h1>
+  <router-outlet></router-outlet>
   `
 })
-export class AppComponent {
-  message = '';
-
-  constructor(private homeService: HomeService){}
-
-  ngOnInit(){
-    this.homeService.getWelcomeMessage().subscribe(data =>{
-      this.message = data;
-    });
-  }
-}
+export class AppComponent {}
