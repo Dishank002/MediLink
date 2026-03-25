@@ -242,22 +242,24 @@ a {
   display: flex;
   justify-content: center;
   margin: 20px 0;
-  gap: 10px;
+  /* border: 1px solid black; */
+  /* border-radius: 10px; */
+  /* gap: 10px; */
 }
 
 .role-selector button {
+  width: 100%;
   padding: 10px 25px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
-  background-color: white;
+  background-color: #f0f0f0;
   color: #333;
   font-weight: bold;
   transition: all 0.3s ease;
 }
 
 .role-selector button:hover {
-  background-color: #f0f0f0;
+  background-color: #dadada;
 }
 
 .role-selector button.selected {
@@ -291,10 +293,11 @@ a {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  background-color: rgb(218, 218, 218);
 }
 
 .login-form button:hover {
-  background-color: rgb(218, 218, 218);
+  background-color: rgb(182, 182, 182);
 }
 @keyframes popupAnimation {
   from{
