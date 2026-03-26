@@ -1,0 +1,204 @@
+<div>
+    <div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <a class="navbar-brand m-0" href="#">
+                        <img src="../../../assets/images/MediLink-Logo.png" class="Logo">
+                    </a>
+                    <div class="d-flex align-items-center gap-2 d-lg-none">
+                        <a href="#">
+                            <img src="../../../assets/images/Ambulance-logo.png" class="ambulance-logo">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse mt-2 mt-lg-0" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4">
+                        <li class="nav-item"><a class="nav-link active" href="#">FAQs</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">About Us</a></li>
+                        <li class="nav-item">
+                            <button class="btn btn-success" (click)="openLogin()">Login</button>
+                        </li>
+                        <li class="nav-item d-none d-lg-block">
+                            <a href="#">
+                                <img src="../../../assets/images/Ambulance-logo.png" class="ambulance-logo">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="banner-container">
+        <img src="../../../assets/images/Home-banner.png" alt="home-banner" class="home-banner">
+        <div class="banner-overlay"></div>
+        <div class="banner-text">Your health is our mission, your well-being is our greatest reward.</div>
+    </div>
+    <div class="modal-overlay" *ngIf="showLogin" (click)="onOverlayClick($event)">
+        <div class="modal-box">
+            <span class="material-icons close-icon" (click)="closeLogin()">close</span>
+            <h2>Login As</h2>
+            <div class="role-selector">
+                <button [class.selected]="selectedRole === 'patient'" (click)="selectRole('patient')" style="border-radius: 5px 0 0px 5px;">
+                    Patient
+                </button>
+                <button [class.selected]="selectedRole === 'employee'" (click)="selectRole('employee')" style="border-radius: 0 5px 5px 0;">
+                    Employee
+                </button>
+            </div>
+            <div *ngIf="selectedRole === 'patient'" class="login-form">
+                <div *ngIf="!isRegister">
+                    <input type="text" placeholder="Enter Mobile Number" />
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button style="white-space: nowrap;">Get OTP</button>
+                        <input type="text" placeholder="Enter OTP" />
+                    </div>
+                    <button>Verify OTP</button>
+                    <h6>First time logging in? <a href="#" (click)="startRegister();$event.preventDefault()"
+                            style="color: #0000EE;">Register Here</a></h6>
+                </div>
+                <div *ngIf="isRegister">
+                    <input type="text" placeholder="Enter Name" />
+                    <input type="text" placeholder="Enter Email" />
+                    <input type="text" placeholder="Enter Mobile Number" />
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button style="white-space: nowrap;">Get OTP</button>
+                        <input type="text" placeholder="Enter OTP" />
+                    </div>
+                    <button>Verify OTP</button>
+                    <button style="background-color: rgb(92, 209, 255);">Register</button>
+                    <h6 class="signup-text">
+                        Already have an account? <a href="#" (click)="isRegister=false" style="color: #0000EE;">Login
+                            Here</a>
+                    </h6>
+                </div>
+            </div>
+            <div *ngIf="selectedRole === 'employee'" class="login-form">
+                <input type="text" [(ngModel)]="username" placeholder="Enter Username" />
+                <input type="password" [(ngModel)]="password" placeholder="Enter Password" />
+                <button (click)="login()" style="background-color: rgb(92, 209, 255);">Login</button>
+            </div>
+        </div>
+    </div>
+    <!-- <p>{{message}}</p> -->
+    <div class="main-wrapper">
+        <div class="card-container">
+            <div class="card-row">
+                <div>
+                    <a href="#">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h5 class="card-title">Book an Appointment</h5>
+                                    <p class="card-text">Schedule your visit in minutes.</p>
+                                </div>
+                                <div class="card-image">
+                                    <img src="../../../assets/images/Book_Appointment.png" alt="Book Appointment Logo">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h5 class="card-title">Our Doctors</h5>
+                                    <p class="card-text">Connect with trusted specialists.</p>
+                                </div>
+                                <div class="card-image">
+                                    <img src="../../../assets/images/Our_Doctors.png" alt="Doctors Logo">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h5 class="card-title">Our Services</h5>
+                                    <p class="card-text">Comprehensive care, all in one place.</p>
+                                </div>
+                                <div class="card-image">
+                                    <img src="../../../assets/images/Our_Services.png" alt="Our Services Logo">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-row">
+                <div>
+                    <a href="#">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h5 class="card-title">Blood Availability</h5>
+                                    <p class="card-text">Check real‑time blood stock.</p>
+                                </div>
+                                <div class="card-image">
+                                    <img src="../../../assets/images/Blood_Availability.png"
+                                        alt="Blood Availability Logo">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h5 class="card-title">Our Hospitals</h5>
+                                    <p class="card-text">Find nearby hospitals instantly.</p>
+                                </div>
+                                <div class="card-image">
+                                    <img src="../../../assets/images/Hospitals.png" alt="Hospitals Logo">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <h5 class="card-title">Lab Tests</h5>
+                                    <p class="card-text">Book diagnostic tests with ease.</p>
+                                </div>
+                                <div class="card-image">
+                                    <img src="../../../assets/images/Lab_tests.png" alt="Lab tests Logo">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="#">
+                <div class="card2">
+                    <div class="card-content2">
+                        <div class="card-image2">
+                            <img src="../../../assets/images/Health_Checkups.png" alt="Health Checkups Logo">
+                        </div>
+                        <div class="card-body2">
+                            <h5 class="card-title2">Health Checkups</h5>
+                            <p class="card-text2">Stay proactive, stay healthy</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
