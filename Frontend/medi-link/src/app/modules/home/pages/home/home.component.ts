@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       password: this.password
     };
 
-    this.http.post('http://localhost:5022/api/home/login', payload)
+    this.http.post('https://localhost:7072/api/home/login', payload)
     .subscribe({
       next: (res: any) => {
         console.log(res);
