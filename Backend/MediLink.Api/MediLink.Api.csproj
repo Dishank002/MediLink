@@ -18,4 +18,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MediLink.Core\MediLink.Core.csproj" />
+    <ProjectReference Include="..\MediLink.Infrastructure\MediLink.Infrastructure.csproj" />
+    <ProjectReference Include="..\MediLink.Services\MediLink.Services.csproj" />
+  </ItemGroup>
+
 </Project>

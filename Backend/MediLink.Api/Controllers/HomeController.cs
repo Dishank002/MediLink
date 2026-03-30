@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using MediLink.Api.Data;
-using MediLink.Api.Models;
+using MediLink.Core.DTOs;
+using MediLink.Core.Interfaces;
+using System.Threading.Tasks;
 
 namespace MediLink.Api.Controllers
 {
@@ -8,74 +9,39 @@ namespace MediLink.Api.Controllers
     [Route("api/[controller]")]
     public class HomeController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        private readonly PasswordService _passwordService;
+        private readonly IAuthService _authService;
 
-        public HomeController(AppDbContext context, PasswordService passwordService)
+        public HomeController(IAuthService authService)
         {
-            _context = context;
-            _passwordService = passwordService;
+            _authService = authService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO dto)
         {
-            var adminExists = _context.Users.Any(u => u.RoleId == 1);
+            var result = await _authService.LoginAsync(dto);
 
-            if (!adminExists)
+            if (!result.Success)
             {
-                var hashedPassword = _passwordService.HashPassword(dto.Password);
-                var admin = new User
+                if (result.Message == "Invalid Username" || result.Message == "Invalid Password")
                 {
-                    UserName = dto.UserName,
-                    Email = "admin@gmail.com",
-                    LoginCode = "",
-                    PasswordHash = hashedPassword,
-                    RoleId = 1,
-                    IsActive = true,
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "System",
-                    LastUpdatedAt = DateTime.Now,
-                    LastUpdatedBy = "System"
-                };
-
-                _context.Users.Add(admin);
-                await _context.SaveChangesAsync();
-
-                return Ok(new 
-                { Message = "Admin Created Successfully",
-                    userName = admin.UserName,
-                    roleId = 1
-                });
-            }
-
-            var user = _context.Users.FirstOrDefault(u => u.UserName == dto.UserName);
-
-            if (user == null)
-            {
-                return Unauthorized("Invalid Username");
-            }
-
-            var isValid = _passwordService.VerifyPassword(user.PasswordHash, dto.Password);
-
-            if (!isValid)
-            {
-                return Unauthorized("Invalid Password");
+                    return Unauthorized(result.Message);
+                }
+                return BadRequest(result.Message);
             }
 
             return Ok(new
             {
-                message = "Login Successful",
-                roleId = user.RoleId,
-                userName = user.UserName
+                message = result.Message,
+                roleId = result.RoleId,
+                userName = result.UserName
             });
-
-            
         }
+
         [HttpGet]
-            public IActionResult Get()
-            {
-                return Ok("Welcome to MediLink API! This message is coming from the HomeController.");
-            }
+        public IActionResult Get()
+        {
+            return Ok("Welcome to MediLink API! This message is coming from the HomeController.");
+        }
     }
 }
