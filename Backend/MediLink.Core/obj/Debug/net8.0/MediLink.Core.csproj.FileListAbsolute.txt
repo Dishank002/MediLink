@@ -1,0 +1,12 @@
+E:\Project\MediLinkAPI\Backend\MediLink.Core\bin\Debug\net8.0\MediLink.Core.deps.json
+E:\Project\MediLinkAPI\Backend\MediLink.Core\bin\Debug\net8.0\MediLink.Core.dll
+E:\Project\MediLinkAPI\Backend\MediLink.Core\bin\Debug\net8.0\MediLink.Core.pdb
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\MediLink.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\MediLink.Core.AssemblyInfoInputs.cache
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\MediLink.Core.AssemblyInfo.cs
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\MediLink.Core.csproj.CoreCompileInputs.cache
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\MediLink.Core.sourcelink.json
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\MediLink.Core.dll
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\refint\MediLink.Core.dll
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\MediLink.Core.pdb
+E:\Project\MediLinkAPI\Backend\MediLink.Core\obj\Debug\net8.0\ref\MediLink.Core.dll

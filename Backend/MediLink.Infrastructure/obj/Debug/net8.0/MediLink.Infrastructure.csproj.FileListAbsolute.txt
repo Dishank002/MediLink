@@ -1,0 +1,16 @@
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\bin\Debug\net8.0\MediLink.Infrastructure.deps.json
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\bin\Debug\net8.0\MediLink.Infrastructure.dll
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\bin\Debug\net8.0\MediLink.Infrastructure.pdb
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\bin\Debug\net8.0\MediLink.Core.dll
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\bin\Debug\net8.0\MediLink.Core.pdb
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.Infrastructure.csproj.AssemblyReference.cache
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.Infrastructure.AssemblyInfoInputs.cache
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.Infrastructure.AssemblyInfo.cs
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.Infrastructure.csproj.CoreCompileInputs.cache
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.Infrastructure.sourcelink.json
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.FFEC2EE5.Up2Date
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.Infrastructure.dll
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\refint\MediLink.Infrastructure.dll
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\MediLink.Infrastructure.pdb
+E:\Project\MediLinkAPI\Backend\MediLink.Infrastructure\obj\Debug\net8.0\ref\MediLink.Infrastructure.dll
