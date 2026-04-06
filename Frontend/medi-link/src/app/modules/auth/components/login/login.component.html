@@ -1,0 +1,46 @@
+<div class="modal-overlay" *ngIf="showLogin" (click)="onOverlayClick($event)">
+        <div class="modal-box">
+            <span class="material-icons close-icon" (click)="closeLogin()">close</span>
+            <h2>Login As</h2>
+            <div class="role-selector">
+                <button [class.selected]="selectedRole === 'patient'" (click)="selectRole('patient')" style="border-radius: 5px 0 0px 5px;">
+                    Patient
+                </button>
+                <button [class.selected]="selectedRole === 'employee'" (click)="selectRole('employee')" style="border-radius: 0 5px 5px 0;">
+                    Employee
+                </button>
+            </div>
+            <div *ngIf="selectedRole === 'patient'" class="login-form">
+                <div *ngIf="!isRegister">
+                    <input type="text" placeholder="Enter Mobile Number" />
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button style="white-space: nowrap;">Get OTP</button>
+                        <input type="text" placeholder="Enter OTP" />
+                    </div>
+                    <button>Verify OTP</button>
+                    <h6>First time logging in? <a href="#" (click)="startRegister();$event.preventDefault()"
+                            style="color: #0000EE;">Register Here</a></h6>
+                </div>
+                <div *ngIf="isRegister">
+                    <input type="text" placeholder="Enter Name" />
+                    <input type="text" placeholder="Enter Email" />
+                    <input type="text" placeholder="Enter Mobile Number" />
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button style="white-space: nowrap;">Get OTP</button>
+                        <input type="text" placeholder="Enter OTP" />
+                    </div>
+                    <button>Verify OTP</button>
+                    <button style="background-color: rgb(92, 209, 255);">Register</button>
+                    <h6 class="signup-text">
+                        Already have an account? <a href="#" (click)="isRegister=false" style="color: #0000EE;">Login
+                            Here</a>
+                    </h6>
+                </div>
+            </div>
+            <div *ngIf="selectedRole === 'employee'" class="login-form">
+                <input type="text" [(ngModel)]="username" placeholder="Enter Username" />
+                <input type="password" [(ngModel)]="password" placeholder="Enter Password" />
+                <button (click)="login()" style="background-color: rgb(92, 209, 255);">Login</button>
+            </div>
+        </div>
+    </div>
