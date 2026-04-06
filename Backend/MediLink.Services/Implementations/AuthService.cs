@@ -3,6 +3,7 @@ using MediLink.Core.Interfaces;
 using MediLink.Core.Models;
 using System;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace MediLink.Services.Implementations
 {
@@ -10,17 +11,20 @@ namespace MediLink.Services.Implementations
     {
         private readonly IUserRepository _userRepository;
         private readonly PasswordService _passwordService;
+        private readonly IJwtService _jwtService;
 
-        public AuthService(IUserRepository userRepository, PasswordService passwordService)
+        public AuthService(IUserRepository userRepository, PasswordService passwordService, IJwtService jwtService)
         {
             _userRepository = userRepository;
             _passwordService = passwordService;
+            _jwtService = jwtService;
         }
 
         public async Task<AuthResult> LoginAsync(LoginDTO dto)
         {
+            var sw = Stopwatch.StartNew();
             var adminExists = await _userRepository.AdminExistsAsync();
-
+            Console.WriteLine($"AdminExists check: {sw.ElapsedMilliseconds} ms");
             if (!adminExists)
             {
                 var hashedPassword = _passwordService.HashPassword(dto.Password);
@@ -39,7 +43,11 @@ namespace MediLink.Services.Implementations
                 };
 
                 await _userRepository.AddUserAsync(admin);
+                Console.WriteLine($"Add user: {sw.ElapsedMilliseconds} ms");
                 await _userRepository.SaveChangesAsync();
+                Console.WriteLine($"Save changes: {sw.ElapsedMilliseconds} ms");
+                sw.Stop();
+                Console.WriteLine($"Total (admin creation): {sw.ElapsedMilliseconds} ms");
 
                 return new AuthResult
                 {
@@ -51,9 +59,13 @@ namespace MediLink.Services.Implementations
             }
 
             var user = await _userRepository.GetUserByUserNameAsync(dto.UserName);
+            Console.WriteLine($"Get user: {sw.ElapsedMilliseconds} ms");
+
 
             if (user == null)
             {
+                sw.Stop();
+                Console.WriteLine($"Total (invalid user): {sw.ElapsedMilliseconds} ms");
                 return new AuthResult
                 {
                     Success = false,
@@ -62,7 +74,11 @@ namespace MediLink.Services.Implementations
             }
 
             var isValid = _passwordService.VerifyPassword(user.PasswordHash, dto.Password);
+            
+            Console.WriteLine($"Password verify: {sw.ElapsedMilliseconds} ms");
 
+            sw.Stop();
+                Console.WriteLine($"Total login: {sw.ElapsedMilliseconds} ms");
             if (!isValid)
             {
                 return new AuthResult
@@ -71,11 +87,13 @@ namespace MediLink.Services.Implementations
                     Message = "Invalid Password"
                 };
             }
-
+            
+            var token = _jwtService.GenerateToken(user);
             return new AuthResult
             {
                 Success = true,
                 Message = "Login Successful",
+                Token = token,
                 RoleId = user.RoleId,
                 UserName = user.UserName
             };

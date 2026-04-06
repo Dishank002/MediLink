@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MediLink.Core.DTOs;
 using MediLink.Core.Interfaces;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediLink.Api.Controllers
 {
@@ -32,16 +33,18 @@ namespace MediLink.Api.Controllers
 
             return Ok(new
             {
+                token = result.Token,
                 message = result.Message,
                 roleId = result.RoleId,
                 userName = result.UserName
             });
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Welcome to MediLink API! This message is coming from the HomeController.");
+            return Ok("Welcome to MediLink API! This message is coming from the HomeController. JWT is Successufully Implemented.");
         }
     }
 }

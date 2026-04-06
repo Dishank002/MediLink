@@ -1,10 +1,20 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace MediLink.Services.Implementations
 {
     public class PasswordService
     {
-        private readonly PasswordHasher<string> _hasher = new PasswordHasher<string>();
+        public PasswordService()
+        {
+            var options = Options.Create(new PasswordHasherOptions
+            {
+                IterationCount = 100
+            });
+            _hasher = new PasswordHasher<string>(options);
+        }
+        
+        private readonly PasswordHasher<string> _hasher;
 
         public string HashPassword(string password)
         {
