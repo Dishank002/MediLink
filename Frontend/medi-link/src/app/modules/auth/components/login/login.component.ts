@@ -44,11 +44,14 @@ export class LoginComponent {
       password: this.password
     };
 
-    this.http.post('https://localhost:7072/api/home/login', payload)
+    this.http.post('https://localhost:7072/api/home/login', payload, {
+      withCredentials: true
+    })
     .subscribe({
       next: (res: any) => {
         console.log(res);
 
+        // localStorage.setItem('token', res.token);
         localStorage.setItem('roleId', res.roleId);
         localStorage.setItem('userName', res.userName);
 
