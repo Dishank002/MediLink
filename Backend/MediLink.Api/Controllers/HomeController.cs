@@ -31,9 +31,17 @@ namespace MediLink.Api.Controllers
                 return BadRequest(result.Message);
             }
 
+            Response.Cookies.Append("jwt", result.Token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTime.UtcNow.AddMinutes(60)
+            });
+
             return Ok(new
             {
-                token = result.Token,
+                // token = result.Token,
                 message = result.Message,
                 roleId = result.RoleId,
                 userName = result.UserName

@@ -18,9 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<PasswordService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-
 builder.Services.AddScoped<IJwtService, JwtService>();
-
 builder.Services.AddAuthentication("Bearer")
 .AddJwtBearer("Bearer",options =>
 {
@@ -36,7 +34,14 @@ builder.Services.AddAuthentication("Bearer")
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
     };
-    
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            context.Token = context.Request.Cookies["token"];
+            return Task.CompletedTask;
+        }
+    };
 });
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -52,7 +57,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:4200")
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .AllowCredentials();
     });
 });
 
