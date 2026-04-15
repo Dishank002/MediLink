@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MediLink.Core.DTOs;
 using MediLink.Core.Interfaces;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
 namespace MediLink.Api.Controllers
@@ -31,7 +31,7 @@ namespace MediLink.Api.Controllers
                 return BadRequest(result.Message);
             }
 
-            Response.Cookies.Append("jwt", result.Token, new CookieOptions
+            Response.Cookies.Append("token", result.Token, new CookieOptions
             {
                 HttpOnly = true,
                 Secure = true,
@@ -48,11 +48,33 @@ namespace MediLink.Api.Controllers
             });
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpGet]
         public IActionResult Get()
+        
         {
             return Ok("Welcome to MediLink API! This message is coming from the HomeController. JWT is Successufully Implemented.");
         }
+
+        [Authorize]
+        [HttpGet("me")]
+        public IActionResult me()
+        {
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+            var role = User.FindFirstValue(ClaimTypes.Role);
+
+            if(userName == null)
+            {
+                
+                return Unauthorized("User not authenticated");
+            }
+            return Ok(new
+            {
+                userName,
+                role
+            });
+        } 
+
+
     }
 }

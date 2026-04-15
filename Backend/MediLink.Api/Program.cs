@@ -76,9 +76,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors("AllowAll");
 // app.Use(async (context, next) =>
 // {
 //     if (context.Request.Method == "OPTIONS")
