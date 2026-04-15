@@ -91,3 +91,52 @@
     overflow-x: auto;
     transition: margin-left 0.3s;
 }
+
+.profile-wrapper {
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.profile-icon {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-icon .material-icons {
+  font-size: 42px;
+  color: #333;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 180px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 10px;
+  z-index: 100;
+}
+
+.profile-user {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.logout-btn {
+  width: 100%;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #e60000;
+}

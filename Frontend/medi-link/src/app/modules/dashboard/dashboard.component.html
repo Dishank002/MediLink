@@ -4,6 +4,20 @@
       <img src="../../../assets/images/MediLink-Logo.png" alt="MediLink">
     </a>
     <!-- <button class="sidebar-toggle-btn-navbar" (click)="toggleSidebar()">☰</button> -->
+    <div class="profile-wrapper">
+      <div class="profile-icon" (click)="toggleProfileMenu()">
+        <span class="material-icons">account_circle</span>
+      </div>
+      <div class="profile-dropdown" *ngIf="showProfileMenu">
+        <div class="profile-user">
+          👤 {{ username }}
+        </div>
+        <hr />
+        <button class="logout-btn">
+          Logout
+        </button>
+      </div>
+    </div>
   </div>
 </nav>
 
