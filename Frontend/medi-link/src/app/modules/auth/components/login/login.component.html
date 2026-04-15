@@ -42,5 +42,8 @@
                 <input type="password" [(ngModel)]="password" placeholder="Enter Password" />
                 <button (click)="login()" style="background-color: rgb(92, 209, 255);">Login</button>
             </div>
+            <div *ngIf="isLoading" class="modal-loader">
+                <div class="loader"></div>
+            </div>
         </div>
     </div>

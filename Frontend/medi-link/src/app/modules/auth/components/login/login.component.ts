@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +21,12 @@ export class LoginComponent {
   isRegister = false;
   username: string = '';
   password: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ){}
 
   closeLogin(){
@@ -44,11 +47,14 @@ export class LoginComponent {
       password: this.password
     };
 
+    this.isLoading = true;
+
     this.http.post('https://localhost:7072/api/home/login', payload, {
       withCredentials: true
     })
     .subscribe({
       next: (res: any) => {
+        this.isLoading = false;
         console.log(res);
 
         // localStorage.setItem('token', res.token);
@@ -58,6 +64,7 @@ export class LoginComponent {
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {
+        this.isLoading = false;
         alert(err.error);
       }
     });
